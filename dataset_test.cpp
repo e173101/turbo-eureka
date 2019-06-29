@@ -6,10 +6,14 @@
 
 #include <gtest/gtest.h>
 #include "dataset.h"
+#include <unistd.h>
 
 TEST(DATASET, flags)
 {
-    DATASET dataset("/home/atian/Code/turbo-eureka/data/");
+    char cwd[100];
+    getcwd(cwd, 100);
+    string cwd_str(cwd);
+    DATASET dataset(cwd_str + "/data/");
     vector<int> flags = {
         2051,
         10000,
