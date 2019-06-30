@@ -16,7 +16,7 @@ ${TEST_DIR}/dataset: dataset.o dataset_test.o
 ${TEST_DIR}/model_1: model_1.o model_1_test.o dataset.o
 	$(CXX) -o $@ $^ ${LIBS}
 
-%.o: %.cpp
+%.o: %.cpp %.h
 	$(CXX) -o $@ -c $<
 
 
