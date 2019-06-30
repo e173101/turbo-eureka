@@ -1,6 +1,6 @@
 # folds
 data/*
-exe/*
+test/*
 
 # Prerequisites
 *.d

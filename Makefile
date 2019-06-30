@@ -1,14 +1,24 @@
-EXE_DIR = ./exe
+TEST_DIR = ./test
 LIBS=-lgtest -lpthread
 
-EXES =\
-	${EXE_DIR}/dataset_test \
-	${EXE_DIR}/model_1_test
 
-${EXE_DIR}/dataset_test: dataset_test.cpp dataset.cpp
-	$(CXX) dataset_test.cpp dataset.cpp -o $@ ${LIBS}
+TESTS =\
+	${TEST_DIR}/dataset \
+	${TEST_DIR}/model_1
 
-${EXE_DIR}/model_1_test: model_1_test.cpp dataset.cpp model_1.cpp
-	$(CXX) model_1_test.cpp model_1.cpp dataset.cpp -o $@ ${LIBS}
+# ${TEST_DIR}/%: %.o %_test.o 
+	# $(CXX) -o $@ $^ ${LIBS}
+all: ${TESTS}
 
-all: ${EXES}
+${TEST_DIR}/dataset: dataset.o dataset_test.o
+	$(CXX) -o $@ $^ ${LIBS}
+
+${TEST_DIR}/model_1: model_1.o model_1_test.o dataset.o
+	$(CXX) -o $@ $^ ${LIBS}
+
+%.o: %.cpp
+	$(CXX) -o $@ -c $<
+
+
+clean:
+	@rm -f ${TESTS}
