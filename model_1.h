@@ -1,3 +1,3 @@
 #include <vector>
 
-int model_1(const std::vector<unsigned char> image);
+int model_1(const unsigned char *image);

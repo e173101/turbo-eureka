@@ -15,7 +15,7 @@ TEST(model, v1)
 
     int bingo_cnt = 0;
     for (int i = 0; i < dataset.test_images.size(); i++)
-        if (dataset.test_labels[i] == model_1(dataset.test_images[i]))
+        if (dataset.test_labels[i] == model_1(dataset.test_images[i].data()))
             bingo_cnt++;
 
     cout << "Correct count:" << bingo_cnt << endl;

@@ -14,8 +14,8 @@ ${TEST_DIR}/dataset: dataset.o dataset_test.o
 ${TEST_DIR}/model_1: model_1.o model_1_test.o dataset.o
 	$(CXX) -o $@ $^ ${LIBS}
 
-exe/demo: demo.o
-	$(CXX) -o $@ $< ${LIBS_UI}
+exe/demo: demo.o dataset.o model_1.o
+	$(CXX) -o $@ $^ ${LIBS_UI}
 
 %.o: %.cpp %.h
 	$(CXX) -o $@ -c $<
